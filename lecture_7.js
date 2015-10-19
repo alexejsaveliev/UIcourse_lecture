@@ -2,8 +2,8 @@
 function getDomElements(elemName, parent) {
 	if (parent == undefined) {parent = document.body};
 	elemName = elemName.toUpperCase();
-	var resultArr = [];
-	var childNodes = parent.childNodes;
+	var resultArr = [],
+	    childNodes = parent.childNodes;
 
 	getChildNodes(childNodes);
 
