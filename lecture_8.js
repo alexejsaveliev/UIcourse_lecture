@@ -23,33 +23,32 @@ console.log(calc(30,5,'/'));
 
 
 //////////////////////////////////проверка на симетричность скобок
-		function isSimetric(str) {
+function isSimetric(str) {
 
-			if (str.length == 0 || str.length % 2 != 0 || str[0] == ')' || str[str.length-1] == '('
-			|| str.split('(').join('').length != str.split(')').join('').length ) {
-				return false;
-			}
+  if (str.length == 0 || str.length % 2 != 0 || str[0] == ')' || str[str.length - 1] == '(' 
+    || str.split('(').join('').length != str.split(')').join('').length) {
+    return false;
+  }
 
-			var arr = str.split('');
-			var bufer = 0;
-			for (var i = 0; i < arr.length; i++) {
-				if ( arr[i] == '(' ) {
-					bufer++;
-				} else if (arr[i] == ')') {
-					bufer--;
-				}
+  var arr = str.split('');
+  var bufer = 0;
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] == '(') {
+      bufer++;
+    } else if (arr[i] == ')') {
+      bufer--;
+    }
 
-				if (bufer<0) {
-					return false;
-				}
-			}
+    if (bufer < 0) {
+      return false;
+    }
+  }
 
-			return true;
-		}
-
-		console.log(isSimetric(prompt('Enter your string')));
+  return true;
+}
 
 console.log(isSimetric(prompt('Enter your string')));
+
 
 ///////////////////////////////////////////////canvas
 function drawHuman () {
