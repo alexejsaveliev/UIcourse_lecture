@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Paint</title>
+
+	<style>
+		#conteiner{
+			width: 402px;
+			height: 500px;
+		}
+
+		h1{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id='conteiner'>
+		<h1>Paint</h1>
+		<canvas id='canv'></canvas>
+		<div>
+			<form action="#">
+				<div style="">
+					<label>Choise color
+						<input id='color' type="color">
+					</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span>Choice line width</span>
+					<select name="lWidth" id="lineWidth">
+						<option value="1" class="opt_1">1</option>
+						<option value="2" class="opt_2">2</option>
+						<option value="3" class="opt_3">3</option>
+						<option value="4" class="opt_4">4</option>
+						<option value="5" class="opt_5">5</option>
+						<option value="6" class="opt_6">6</option>
+						<option value="7" class="opt_7">7</option>
+						<option value="8" class="opt_8">8</option>
+						<option value="9" class="opt_9">9</option>
+						<option value="10" class="opt_10">10</option>
+					</select>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		function draw () {
+		var canvas = document.getElementById('canv');
+		canvas.width = '400';
+		canvas.height = '400';
+		canvas.style.border = '1px solid';
+		canvas.style.cursor = 'pointer';
+
+		canContext = canvas.getContext('2d');
+		//башка
+		canContext.beginPath();
+		canContext.arc(200,90,30,0,Math.PI*2,true);
+		canContext.stroke();
+
+		//глаза
+		canContext.beginPath();
+		canContext.arc(190,75,2.5,0,Math.PI*2,true);
+		canContext.stroke();
+
+		canContext.beginPath();
+		canContext.arc(210,75,2.5,0,Math.PI*2,true);
+		canContext.stroke();
+
+		//рот
+		canContext.beginPath();
+		canContext.arc(200,90,15,0,Math.PI,false);
+		canContext.stroke();
+
+		//тело
+		canContext.beginPath();
+		canContext.moveTo(200, 120);
+		canContext.lineTo(200, 160);
+		canContext.stroke();
+
+		//Руки
+		canContext.beginPath();
+		canContext.moveTo(200, 130);
+		canContext.lineTo(240, 140);
+		canContext.stroke();
+
+		canContext.beginPath();
+		canContext.moveTo(200, 130);
+		canContext.lineTo(160, 140);
+		canContext.stroke();
+
+
+		//Ноги
+		canContext.beginPath();
+		canContext.moveTo(200, 160);
+		canContext.lineTo(240, 190);
+		canContext.stroke();
+
+		canContext.beginPath();
+		canContext.moveTo(200, 160);
+		canContext.lineTo(160, 190);
+		canContext.stroke();
+
+		//рисуем сами
+		canvas.onmousedown = function(e){
+			if (e.which == 3) {return false};
+
+			var color = document.getElementById('color').value;
+			var lineWidth = document.getElementById('lineWidth').value;
+			var canCoords = e.target.getBoundingClientRect();
+
+			canContext.beginPath();
+			canContext.moveTo(e.x - canCoords.left, e.y - canCoords.top - 1);
+			canContext.lineCap='round';
+			canContext.lineWidth=lineWidth;
+			canContext.strokeStyle = color;
+
+			canvas.onmousemove = function (e) {
+				canContext.lineTo(e.x - canCoords.left, e.y - canCoords.top - 1);
+				canContext.stroke(); 
+				return false;
+			}			
+		}
+
+		canvas.oncontextmenu = function() {
+			draw();
+			return false;
+		}
+
+		document.body.onmouseup = function (e) {
+				canvas.onmousemove = undefined;
+			}
+		}
+
+		draw();
+	</script>
+</body>
+</html>
