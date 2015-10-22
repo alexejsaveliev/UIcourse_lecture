@@ -8,13 +8,19 @@
 	<title>Paint</title>
 
 	<style>
+		h1{
+			text-align: center;
+		}
+		body{
+			background: linear-gradient(to right, #f6f1d3, #648880 85%, #293f50);
+		}
+		#canv{
+			z-index: 100;
+			background-color: white;
+		}
 		#conteiner{
 			width: 402px;
 			height: 500px;
-		}
-
-		h1{
-			text-align: center;
 		}
 	</style>
 </head>
@@ -25,7 +31,7 @@
 		<div>
 			<form action="#">
 				<div style="">
-					<label>Choice color
+					<label>Choise color
 						<input id='color' type="color">
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -46,6 +52,7 @@
 			</form>
 		</div>
 	</div>
+
 	<script>
 		function draw () {
 		var canvas = document.getElementById('canv');
@@ -90,6 +97,7 @@
 		canContext.moveTo(200, 130);
 		canContext.lineTo(160, 140);
 		canContext.stroke();
+
 
 		//Ноги
 		canContext.beginPath();
@@ -137,3 +145,4 @@
 	</script>
 </body>
 </html>
+
