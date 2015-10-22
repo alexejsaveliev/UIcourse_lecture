@@ -124,15 +124,13 @@ function arrayToList (arr) {
 
 	var resultObj = createObj(tempArr);
 
-	function createObj(tempArr) {
-
-		while( tempArr.length ) {
-			var newobj = {};
-			newobj.value = tempArr.shift();
-			newobj.rest = createObj(tempArr);
-		}
-		return newobj;
-	}
+	function createObj(array) {
+	    	if (tempArr.length > 1) {
+	        	return { value: array.shift(), rest: arrayToList(array) };
+	    	} else {
+	        	return { value: array.shift(), rest: null };
+	    	};
+	};	
 	
 	return resultObj;
 }
