@@ -23,31 +23,31 @@ console.log(calc(30,5,'/'));
 
 
 //////////////////////////////////проверка на симетричность скобок
-function isSimetric(str) {
-  var stLength = str.length;
-  if (stLength == 0 || stLength % 2 != 0 || str[0] == ')') {
-    return false;
-  }
+		function isSimetric(str) {
 
-  if (count(str.slice(0, stLength/2),'(') != count(str.slice(stLength/2, stLength),')' )) {
-    return false;
-  }
+			if (str.length == 0 || str.length % 2 != 0 || str[0] == ')' || str[str.length-1] == '('
+			|| str.split('(').join('').length != str.split(')').join('').length ) {
+				return false;
+			}
 
-  function count(str, char) {
-    var pos = 0,
-        result = 0;
-    while (true) {
-      var foundPos = str.indexOf(char, pos);
-      if (foundPos==-1) {
-        break;
-      };
-      result++;
-      pos = foundPos+1;
-    }
-    return result;
-  }
-  return true;
-}
+			var arr = str.split('');
+			var bufer = 0;
+			for (var i = 0; i < arr.length; i++) {
+				if ( arr[i] == '(' ) {
+					bufer++;
+				} else if (arr[i] == ')') {
+					bufer--;
+				}
+
+				if (bufer<0) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		console.log(isSimetric(prompt('Enter your string')));
 
 console.log(isSimetric(prompt('Enter your string')));
 
