@@ -24,30 +24,22 @@ console.log(calc(30,5,'/'));
 
 //////////////////////////////////проверка на симетричность скобок
 function isSimetric(str) {
+    var bufer = 0;
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] == '(') {
+            bufer++;
+        } else if (str[i] == ')') {
+            bufer--;
+        }
 
-  if (str.length == 0 || str.length % 2 != 0 || str[0] == ')' || str[str.length - 1] == '(' 
-    || str.split('(').join('').length != str.split(')').join('').length) {
-    return false;
-  }
-
-  var arr = str.split('');
-  var bufer = 0;
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i] == '(') {
-      bufer++;
-    } else if (arr[i] == ')') {
-      bufer--;
+        if (bufer < 0) {
+            return false;
+        }
     }
 
-    if (bufer < 0) {
-      return false;
-    }
-  }
-
-  return true;
+    return !bufer;
 }
 
-console.log(isSimetric(prompt('Enter your string')));
 
 
 ///////////////////////////////////////////////canvas
