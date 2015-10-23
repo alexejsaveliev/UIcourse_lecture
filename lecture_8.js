@@ -41,6 +41,20 @@ function isSimetric(str) {
 }
 
 
+function isSimetric_v2(str) {
+
+    while (str.length) {
+        var arr = str.split('()');
+        if (arr.length == 1) {
+            return false;
+        }
+
+        str = arr.join('');
+    }
+    return true;
+}
+
+
 
 ///////////////////////////////////////////////canvas
 function drawHuman () {
